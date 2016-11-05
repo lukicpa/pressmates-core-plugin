@@ -1,7 +1,8 @@
 === Plugin Name ===
+
 Contributors: (this should be a list of wordpress.org userid's)
 Donate link: http://www.pressmates.net
-Tags: comments, spam
+Tags: widgets, custom post type, visual composer
 Requires at least: 4.6
 Tested up to: 4.6
 Stable tag: 4.6

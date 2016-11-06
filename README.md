@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== PressMates Core ===
 
 Contributors: 
 Tags: widgets, custom post type, visual composer

@@ -91,6 +91,25 @@ class Pressmates_Core_Admin {
     }
 
     /**
+     * Set plugin default settings on plugin activation
+     */
+    public function set_default_settings_on_plugin_activation() {
+
+        // Check if option added
+        if ( !get_option($this->option_name) ) {
+
+            //Loop through each setting and add it default value
+            $options_array = array();
+            foreach ($this->cpt_checkboxes as $type => $desc) {
+                $options_array = array_merge($options_array, array($type => "on"));
+            }
+
+            //Update plugin option
+            update_option($this->option_name, $options_array);
+        }
+    }
+
+    /**
      * Register the stylesheets for the admin area.
      *
      * @since    1.0.0
@@ -224,7 +243,7 @@ class Pressmates_Core_Admin {
         $name   = $this->option_name . '[' . $type . ']';
 
 
-        printf( '<input type="checkbox" name="%1$s" id="%2$s" class="" %3$s /> <label for="%4$s">Show %5$s Custom Post Type</label>',
+        printf( '<input type="checkbox" name="%1$s" id="%2$s" class="" %3$s /> <label for="%4$s">Enable %5$s Custom Post Type</label>',
             $name,
             $id,
             checked( isset( $data[$type] ), true, false ),

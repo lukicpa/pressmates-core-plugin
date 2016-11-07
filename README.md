@@ -8,7 +8,9 @@ Stable tag: 4.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Plugin with multiple functionalities that will be used in every PressMates themes. Plugin generates several CustomPostTypes, Widgets, for extending Visual Composer and other.
+Multi-functional plugin that will be used in every PressMates themes. 
+Plugin creates several CustomPostTypes, Widgets, extends Visual Composer
+and other.
 
 == Description ==
 
@@ -19,7 +21,7 @@ Markdown parsed.
 
 A few notes about the sections above:
 
-*   "Contributors" is a comma separated list of wp.org/wp-plugins.org usernames
+*   "uContributors" is a comma separated list of wp.org/wp-plugins.org usernames
 *   "Tags" is a comma separated list of tags that apply to the plugin
 *   "Requires at least" is the lowest version that the plugin will work on
 *   "Tested up to" is the highest version that you've *successfully used to test the plugin*. Note that it might work on
@@ -43,9 +45,8 @@ This section describes how to install the plugin and get it working.
 
 e.g.
 
-1. Upload `pressmates-core.php` to the `/wp-content/plugins/` directory
+1. Upload `pressmates-core` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
 
 == Frequently Asked Questions ==
 

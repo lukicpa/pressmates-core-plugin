@@ -30,7 +30,10 @@ class Pressmates_Core_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-
+		
+		//Set default option on plugin initialization
+		$set_default_options = new Pressmates_Core_Admin();
+		$set_default_options->set_default_settings_on_plugin_activation();
 	}
 
 }

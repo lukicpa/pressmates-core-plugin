@@ -63,6 +63,16 @@ class Pressmates_Core_Admin {
     private $cpt_checkboxes = array();
 
     /**
+     * Custom post type name - should be singular and in lover-case
+     * @var
+     */
+    private static $cpt_name;
+    private static $cpt_plural_name;
+    private static $cpt_singular_name;
+    private static $cpt_capability_type;
+    private static $cpt_options = array();
+
+    /**
      * Initialize the class and set its properties.
      *
      * @since    1.0.0
@@ -74,7 +84,6 @@ class Pressmates_Core_Admin {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
         $this->set_cpt_checkboxes();
-
     }
 
     /**
@@ -250,5 +259,94 @@ class Pressmates_Core_Admin {
             $id,
             esc_html( strtoupper( $type ) )
         );
+    }
+
+    /**
+     * Settings for creating Portfolio Custom Post Type
+     */
+    public static function create_cpt_portfolio() {
+        self::$cpt_name = 'portfolio';
+        self::$cpt_capability_type = 'post';
+        self::$cpt_plural_name = 'Portfolios';
+        self::$cpt_singular_name = 'Portfolio';
+
+        self::$cpt_options['can_export']            = true;
+        self::$cpt_options['capability_type']       = self::$cpt_capability_type;
+        self::$cpt_options['description']           = '';
+        self::$cpt_options['exclude_from_search']   = false;
+        self::$cpt_options['has_archive']           = false;
+        self::$cpt_options['hierarchical']          = false;
+        self::$cpt_options['map_meta_cap']          = true;
+        self::$cpt_options['menu_icon']             = 'dashicons-businessman';
+        self::$cpt_options['menu_position']	        = 26;
+        self::$cpt_options['public']                = true;
+        self::$cpt_options['publicly_querable']     = true;
+        self::$cpt_options['query_var']             = true;
+        self::$cpt_options['register_meta_box_cb']  = '';
+        self::$cpt_options['rewrite']               = false;
+        self::$cpt_options['show_in_admin_bar']     = true;
+        self::$cpt_options['show_in_menu']          = true;
+        self::$cpt_options['show_in_nav_menu']      = true;
+        self::$cpt_options['show_ui']               = true;
+        self::$cpt_options['supports']              = array( 'title', 'editor', 'thumbnail' );
+        self::$cpt_options['taxonomies']            = array();
+
+        self::$cpt_options['capabilities']['delete_others_posts']	    = "delete_others_" . self::$cpt_capability_type . "s";
+        self::$cpt_options['capabilities']['delete_post']			    = "delete_" . self::$cpt_capability_type;
+        self::$cpt_options['capabilities']['delete_posts']			    = "delete_" . self::$cpt_capability_type . "s";
+        self::$cpt_options['capabilities']['delete_private_posts']	    = "delete_private_" . self::$cpt_capability_type . "s";
+        self::$cpt_options['capabilities']['delete_published_posts']	= "delete_published_" . self::$cpt_capability_type . "s";
+        self::$cpt_options['capabilities']['edit_others_posts']		    = "edit_others_" . self::$cpt_capability_type . "s";
+        self::$cpt_options['capabilities']['edit_post']				    = "edit_" . self::$cpt_capability_type;
+        self::$cpt_options['capabilities']['edit_posts']				= "edit_" . self::$cpt_capability_type;
+        self::$cpt_options['capabilities']['edit_private_posts']		= "edit_private_" . self::$cpt_capability_type . "s";
+        self::$cpt_options['capabilities']['edit_published_posts']	    = "edit_published_" . self::$cpt_capability_type . "s";
+        self::$cpt_options['capabilities']['publish_posts']			    = "publish_" . self::$cpt_capability_type . "s";
+        self::$cpt_options['capabilities']['read_post']				    = "read_" . self::$cpt_capability_type;
+        self::$cpt_options['capabilities']['read_private_posts']		= "read_private_" . self::$cpt_capability_type . "s";
+
+        self::$cpt_options['labels']['add_new']             = esc_html__( "Add New " . self::$cpt_singular_name, 'pressmates-core' );
+        self::$cpt_options['labels']['add_new_item']        = esc_html__( "Add New " . self::$cpt_singular_name, 'pressmates-core' );
+        self::$cpt_options['labels']['all_items']           = esc_html__( self::$cpt_plural_name, 'pressmates-core' );
+        self::$cpt_options['labels']['edit_item']           = esc_html__( "Edit " . self::$cpt_singular_name , 'pressmates-core' );
+        self::$cpt_options['labels']['menu_name']           = esc_html__( self::$cpt_plural_name, 'pressmates-core' );
+        self::$cpt_options['labels']['name']                = esc_html__( self::$cpt_plural_name, 'pressmates-core' );
+        self::$cpt_options['labels']['name_admin_bar']      = esc_html__( self::$cpt_singular_name, 'pressmates-core' );
+        self::$cpt_options['labels']['new_item']            = esc_html__( "New " . self::$cpt_singular_name, 'pressmates-core' );
+        self::$cpt_options['labels']['not_found']           = esc_html__( "No " . self::$cpt_plural_name . " Found", 'pressmates-core' );
+        self::$cpt_options['labels']['not_found_in_trash']  = esc_html__( "No " . self::$cpt_plural_name . " Found in Trash", 'pressmates-core' );
+        self::$cpt_options['labels']['parent_item_colon']   = esc_html__( "Parent " . self::$cpt_plural_name . " :", 'pressmates-core' );
+        self::$cpt_options['labels']['search_items']        = esc_html__( "Search " . self::$cpt_plural_name , 'pressmates-core' );
+        self::$cpt_options['labels']['singular_name']       = esc_html__( self::$cpt_singular_name, 'pressmates-core' );
+        self::$cpt_options['labels']['view_item']           = esc_html__( "View " . self::$cpt_singular_name, 'pressmates-core' );
+
+        self::$cpt_options['rewrite']['ep_mask']        = EP_PERMALINK;
+        self::$cpt_options['rewrite']['feeds']  		= false;
+        self::$cpt_options['rewrite']['pages']	    	= true;
+        self::$cpt_options['rewrite']['slug']			= esc_html__( strtolower( self::$cpt_plural_name ), 'pressmates-core' );
+        self::$cpt_options['rewrite']['with_front']	    = false;
+
+        self::register_cpt(self::$cpt_name, self::$cpt_options);
+    }
+
+    /**
+     * Register Custom Post Type based on provided settings
+     * @param $cpt_name
+     * @param $options
+     */
+    public static function register_cpt( $cpt_name, $options ) {
+        //Allow users to add additional options
+        $cpt_options = apply_filters( $cpt_name, $options );
+
+        //Create CPT
+        register_post_type( strtolower( $cpt_name ), $cpt_options );
+    }
+
+    /**
+     * Unregister custom post type if user deactivate it from admin setting page
+     * @param $cpt_name
+     */
+    public static function unregister_cpt( $cpt_name ){
+        unregister_post_type( $cpt_name );
     }
 }

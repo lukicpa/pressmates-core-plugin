@@ -36,6 +36,10 @@ class Pressmates_Core_Activator {
 		$set_default_options->set_default_settings_on_plugin_activation();
 
         Pressmates_Core_Admin::create_cpt_portfolio();
+		Pressmates_Core_Admin::create_cpt_services();
+		Pressmates_Core_Admin::create_cpt_sliders();
+		Pressmates_Core_Admin::create_cpt_team();
+		Pressmates_Core_Admin::create_cpt_advertisement();
         flush_rewrite_rules();
 	}
 

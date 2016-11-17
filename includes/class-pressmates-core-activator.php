@@ -33,14 +33,11 @@ class Pressmates_Core_Activator {
 
 		//Set default option on plugin initialization
 		$set_default_options = new Pressmates_Core_Admin();
-		$set_default_options->set_default_settings_on_plugin_activation();
 
-        Pressmates_Core_Admin::create_cpt_portfolio();
-		Pressmates_Core_Admin::create_cpt_services();
-		Pressmates_Core_Admin::create_cpt_sliders();
-		Pressmates_Core_Admin::create_cpt_team();
-		Pressmates_Core_Admin::create_cpt_advertisement();
-        flush_rewrite_rules();
+		Pressmates_Core_Admin::register_cpts();
+		flush_rewrite_rules();
+
+		$set_default_options->set_default_settings_on_plugin_activation();
 	}
 
 }

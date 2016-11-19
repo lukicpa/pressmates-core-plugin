@@ -433,16 +433,32 @@ class Pressmates_Core_Admin {
                 'capability_type'   => 'post',
                 'plural_name'       => 'Services',
                 'singular_name'     => 'Service',
-                'menu_icon'         => 'dashicons-admin-users',
-                'menu_position'     => 26,
+                'menu_icon'         => 'dashicons-admin-generic',
+                'menu_position'     => 25,
                 'cpt_options'       => []
             ],
             'pressmates_team' => [
                 'capability_type'   => 'post',
                 'plural_name'       => 'Teams',
                 'singular_name'     => 'Team',
-                'menu_icon'         => 'dashicons-admin-users',
-                'menu_position'     => 27,
+                'menu_icon'         => 'dashicons-groups',
+                'menu_position'     => 25,
+                'cpt_options'       => []
+            ],
+            'pressmates_ads' => [
+                'capability_type'   => 'post',
+                'plural_name'       => 'Ads',
+                'singular_name'     => 'Ad',
+                'menu_icon'         => 'dashicons-megaphone',
+                'menu_position'     => 25,
+                'cpt_options'       => []
+            ],
+            'pressmates_slider' => [
+                'capability_type'   => 'post',
+                'plural_name'       => 'Sliders',
+                'singular_name'     => 'Slider',
+                'menu_icon'         => 'dashicons-slides',
+                'menu_position'     => 25,
                 'cpt_options'       => []
             ]
         );
@@ -468,5 +484,13 @@ class Pressmates_Core_Admin {
      */
     public static function unregister_cpt( $cpt_name ){
         unregister_post_type( $cpt_name );
+    }
+
+    /**
+     * Register all widgets
+     */
+    public function register_widgets() {
+        register_widget( 'PressMates_About_Me_Widget' );
+        register_widget( 'Fb_Like_Page_Widget' );
     }
 }

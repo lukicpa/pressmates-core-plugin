@@ -13,7 +13,7 @@
  * @package           Pressmates_Core
  *
  * @wordpress-plugin
- * Plugin Name:       PressMates Core
+ * Plugin Name:       _PressMates Core
  * Plugin URI:        http://www.pressmates.net
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0

@@ -119,6 +119,12 @@ class Pressmates_Core {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-pressmates-core-public.php';
 
+		/**
+		 * Widgets
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'widgets/about-me-widget/class-about-me-widget.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'widgets/facebook-like-widget/class-facebook-like-page-widget.php';
+
 		$this->loader = new Pressmates_Core_Loader();
 
 	}
@@ -156,6 +162,7 @@ class Pressmates_Core {
 		$this->loader->add_action( 'init', $plugin_admin, 'register_cpts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_options_page' );
         $this->loader->add_action( 'admin_init', $plugin_admin, 'register_setting' );
+        $this->loader->add_action( 'widgets_init', $plugin_admin, 'register_widgets' );
 
 	}
 

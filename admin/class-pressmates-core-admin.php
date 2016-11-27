@@ -153,6 +153,25 @@ class Pressmates_Core_Admin {
     }
 
     /**
+     * Adds PM menu
+     *
+     * since 1.0.0
+     */
+    function pressmates_settings_menu() {
+        add_menu_page(
+            'PressMates',
+            'PressMates',
+            'manage_options',
+            'pressmates-settings-page',
+            array( $this, 'pressmates_settings_page_content' )
+        );
+    }
+
+    public function pressmates_settings_page_content() {
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/pressmates-core-admin-settings-page.php';
+    }
+
+    /**
      * Add an Plugin options page under the Settings submenu
      *
      * @since  1.0.0
@@ -404,9 +423,7 @@ class Pressmates_Core_Admin {
 
         $pressmatess_core_options = get_option('pressmates_core');
 
-        $nesto = true;
-
-        if(array_key_exists($cpt_name, $pressmatess_core_options)) {
+        if(is_array($pressmatess_core_options) && array_key_exists($cpt_name, $pressmatess_core_options)) {
             //Allow users to add additional options
             $cpt_options = apply_filters($cpt_name, $options);
 
@@ -491,6 +508,7 @@ class Pressmates_Core_Admin {
      */
     public function register_widgets() {
         register_widget( 'PressMates_About_Me_Widget' );
-        register_widget( 'Fb_Like_Page_Widget' );
+        register_widget( 'PressMates_Fb_Like_Page_Widget' );
+        register_widget( 'PressMates_Instagram_Feed_Widget' );
     }
 }

@@ -8,16 +8,29 @@
  * @package    Pressmates_Core
  * @subpackage Pressmates_Core/widgets
  */
-class Fb_Like_Page_Widget extends WP_Widget {
+class PressMates_Fb_Like_Page_Widget extends WP_Widget {
 
     /**
      * Register widget with WordPress.
      */
     function __construct() {
+        /* Widget settings. */
+        $widget_ops = array(
+            'classname' => 'pressmates_fb_like_page_widget',
+            'description' => __( 'Facebook Like page Widget', 'pressmates-core' )
+        );
+
+        /* Widget control settings. */
+        $control_ops = array(
+            'id_base' => 'pressmates_fb_like_page_widget'
+        );
+
+        /* Create the widget. */
         parent::__construct(
-            'fb_like_page_widget', // Base ID
-            esc_html__( 'PressMates - FB Like page', 'pressmates-core' ), // Name
-            array( 'description' => esc_html__( 'Facebook Like page Widget', 'pressmates-core' ), ) // Args
+            'pressmates_fb_like_page_widget',
+            __( 'PressMates - FB Like page', 'pressmates-core' ),
+            $widget_ops,
+            $control_ops
         );
     }
 
@@ -35,8 +48,8 @@ class Fb_Like_Page_Widget extends WP_Widget {
             echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
         }
 
-        $title = isset( $instance['title'] ) ? $instance['title'] : 'PressMates';
-        $link = isset( $instance['link'] ) ? $instance['link'] : 'https://www.facebook.com/pressmates';
+        $title = isset( $instance['title'] ) ? $instance['title'] : esc_html__( 'PressMates', 'pressmates-core' );
+        $link = isset( $instance['link'] ) ? $instance['link'] : esc_html__( 'https://www.facebook.com/pressmates', 'pressmates-core' );
         $width = isset( $instance['width'] ) ? $instance['width'] : '340';
         $height = isset( $instance['height'] ) ? $instance['height'] : '500';
 

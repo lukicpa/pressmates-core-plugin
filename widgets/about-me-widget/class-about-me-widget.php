@@ -10,15 +10,30 @@
  */
 class PressMates_About_Me_Widget extends WP_Widget {
 
+    /**
+     * Register widget with WordPress.
+     */
     public function __construct() {
         /* Widget settings. */
-        $widget_ops = array( 'classname' => 'pressmates_about_me_widget', 'description' => __( 'Displays About widget', 'pressmates-core' ) );
+        $widget_ops = array(
+            'classname' => 'pressmates_about_me_widget',
+            'description' => __( 'Displays About widget', 'pressmates-core' )
+        );
 
         /* Widget control settings. */
-        $control_ops = array( 'width' => 250, 'height' => 350, 'id_base' => 'pressmates_about_me_widget' );
+        $control_ops = array(
+            'width' => 250,
+            'height' => 350,
+            'id_base' => 'pressmates_about_me_widget'
+        );
 
         /* Create the widget. */
-        parent::__construct( 'pressmates_about_me_widget', __( 'PressMates - About Me', 'pressmates-core' ), $widget_ops, $control_ops );
+        parent::__construct(
+            'pressmates_about_me_widget',
+            __( 'PressMates - About Me', 'pressmates-core' ),
+            $widget_ops,
+            $control_ops
+        );
 
         add_action( 'admin_enqueue_scripts', array( $this, 'upload_scripts') );
     }
@@ -41,17 +56,22 @@ class PressMates_About_Me_Widget extends WP_Widget {
         extract( $args );
 
         /* Our variables from the widget settings. */
-        $title       = apply_filters( 'widget_title', $instance['title'] );
-        $image       = $instance['image'];
-        $name        = $instance['name'];
-        $description = $instance['description'];
+        $title          = apply_filters( 'widget_title', $instance['title'] );
+        $image          = $instance['image'];
+        $name           = $instance['name'];
+        $description    = $instance['description'];
+        $before_widget  = $args['before_widget'];
+        $after_widget   = $args['after_widget'];
+        $before_title   = $args['before_title'];
+        $after_title    = $args['after_title'];
 
         /* Before widget (defined by themes). */
         echo $before_widget;
 
         /* Display the widget title if one was input (before and after defined by themes). */
-        if ( $title )
+        if ( $title ) {
             echo $before_title . $title . $after_title;
+        }
 
         ?>
 

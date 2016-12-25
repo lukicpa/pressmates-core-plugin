@@ -74,6 +74,8 @@ class Pressmates_Core_Admin {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
         $this->set_cpt_checkboxes();
+
+        $this->register_meta_boxes();
     }
 
     /**
@@ -476,7 +478,11 @@ class Pressmates_Core_Admin {
                 'singular_name'     => 'Slider',
                 'menu_icon'         => 'dashicons-slides',
                 'menu_position'     => 25,
-                'cpt_options'       => []
+                'cpt_options'       => [
+                    'supports' => [
+                        'title'
+                    ]
+                ]
             ]
         );
 
@@ -510,5 +516,64 @@ class Pressmates_Core_Admin {
         register_widget( 'PressMates_About_Me_Widget' );
         register_widget( 'PressMates_Fb_Like_Page_Widget' );
         register_widget( 'PressMates_Instagram_Feed_Widget' );
+        register_widget( 'PressMates_Latest_Posts_Thumbnails_Widget' );
+    }
+
+    /**
+     * Register Meta Boxes
+     */
+    public function register_meta_boxes(){
+        $prefix = "pressmates_slider_";
+        /*
+         * configure your meta box
+         */
+        $slider_meta_config = array(
+            'id'             => 'pressmates_slider_meta',   // meta box id, unique per meta box
+            'title'          => 'Slides',                   // meta box title
+            'pages'          => array('pressmates_slider'), // post types, accept custom post types as well, default is array('post'); optional
+            'context'        => 'normal',                   // where the meta box appear: normal (default), advanced, side; optional
+            'priority'       => 'high',                     // order of meta box: high (default), low; optional
+            'fields'         => array(),                    // list of meta fields (can be added by field arrays)
+            'local_images'   => false,                      // Use local or hosted images (meta box images for add/remove)
+            'use_with_theme' => false                       // change path if used with theme set to true, false for a plugin or anything else for a custom path(default false).
+        );
+
+
+        // Initiate slider meta
+        $slider_meta =  new PressMates_Meta_Box($slider_meta_config);
+
+
+        /*
+         * To Create a reapeater Block first create an array of fields
+         * use the same functions as above but add true as a last param
+         */
+        $slider_meta_repeater_fields[] = $slider_meta->addText(
+            $prefix.'re_text_field_id',
+            array('name'=> 'Slider Title', 'class' => 'full-width' ),
+            true
+        );
+        $slider_meta_repeater_fields[] = $slider_meta->addWysiwyg(
+            $prefix.'re_textarea_field_id',
+            array('name'=> 'Slider Content', 'class' => 'dareCare'),
+            true
+        );
+        $slider_meta_repeater_fields[] = $slider_meta->addImage(
+            $prefix.'image_field_id',
+            array('name'=> 'Slider image'),
+            true
+        );
+        /*
+         * Then just add the fields to the repeater block
+         */
+        //repeater block
+        $slider_meta->addRepeaterBlock($prefix.'re_',array(
+            'inline'   => true,
+            'name'     => 'Add Slides',
+            'fields'   => $slider_meta_repeater_fields,
+            'sortable' => true
+        ));
+
+        //Finish Meta Box Declaration
+        $slider_meta->Finish();
     }
 }

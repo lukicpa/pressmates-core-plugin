@@ -125,6 +125,12 @@ class Pressmates_Core {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'widgets/about-me-widget/class-about-me-widget.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'widgets/facebook-like-widget/class-facebook-like-page-widget.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'widgets/instagram-feed-widget/class-instagram-feed-widget.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'widgets/latest-posts-thumbnails-widget/class-latest-posts-thumbnails-widget.php';
+
+		/**
+		 * Meta Box
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'meta-box-class/class-pressmates-my-meta-box.php';
 
 		$this->loader = new Pressmates_Core_Loader();
 

@@ -48,10 +48,10 @@ class PressMates_Fb_Like_Page_Widget extends WP_Widget {
             echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
         }
 
-        $title = isset( $instance['title'] ) ? $instance['title'] : esc_html__( 'PressMates', 'pressmates-core' );
-        $link = isset( $instance['link'] ) ? $instance['link'] : esc_html__( 'https://www.facebook.com/pressmates', 'pressmates-core' );
-        $width = isset( $instance['width'] ) ? $instance['width'] : '340';
-        $height = isset( $instance['height'] ) ? $instance['height'] : '500';
+        $title = isset( $instance['title'] ) ? apply_filters('widget_title', $instance['title'] )   : esc_html__( 'PressMates', 'pressmates-core' );
+        $link = isset( $instance['link'] ) ? $instance['link']                                      : esc_html__( 'https://www.facebook.com/pressmates', 'pressmates-core' );
+        $width = isset( $instance['width'] ) ? $instance['width']                                   : '340';
+        $height = isset( $instance['height'] ) ? $instance['height']                                : '500';
 
         $data_tabs_timeline = ( isset( $instance['data_tabs_timeline'] ) && $instance['data_tabs_timeline'] == 'on' ) ? 'timeline' . ',' : '';
         $data_tabs_events = ( isset( $instance['data_tabs_events'] ) && $instance['data_tabs_events'] == 'on' ) ? 'events' . ',' : '';

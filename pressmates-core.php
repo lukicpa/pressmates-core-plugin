@@ -71,5 +71,5 @@ function run_pressmates_core() {
 	$plugin = new Pressmates_Core();
 	$plugin->run();
 
-}
+};
 run_pressmates_core();

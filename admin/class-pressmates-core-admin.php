@@ -76,6 +76,9 @@ class Pressmates_Core_Admin {
         $this->set_cpt_checkboxes();
 
         $this->register_meta_boxes();
+
+        // @TODO - Register taxonomies
+        add_action( 'init', array($this, 'register_taxonomies'), 0 );
     }
 
     /**
@@ -446,7 +449,11 @@ class Pressmates_Core_Admin {
                 'singular_name'     => 'Portfolio',
                 'menu_icon'         => 'dashicons-portfolio',
                 'menu_position'     => 25,
-                'cpt_options'       => []
+                'cpt_options'       => [
+                    'taxonomies' => [
+                        'portfolio-category'
+                    ]
+                ]
             ],
             'pressmates_service' => [
                 'capability_type'   => 'post',
@@ -499,6 +506,18 @@ class Pressmates_Core_Admin {
                 $options['cpt_options']
             );
         }
+    }
+
+    /**
+     * Register taxonomies for CPT
+     * @TODO - Srediti ovu funkciju i dodati ostale taxonomije. Ovo je privremeno da bi mogli da radimo sa portfolio kategorijama
+     */
+    public static function register_taxonomies() {
+        register_taxonomy( 'portfolio-category', 'pressmates_portfolio', array(
+            'label'        => 'Portfolio Category', 'textdomain',
+            'rewrite'      => array( 'slug' => 'portfolio-category' ),
+            'hierarchical' => true,
+        ) );
     }
 
     /**

@@ -478,18 +478,6 @@ class Pressmates_Core_Admin {
                 'menu_icon'         => 'dashicons-megaphone',
                 'menu_position'     => 25,
                 'cpt_options'       => []
-            ],
-            'pressmates_slider' => [
-                'capability_type'   => 'post',
-                'plural_name'       => 'Sliders',
-                'singular_name'     => 'Slider',
-                'menu_icon'         => 'dashicons-slides',
-                'menu_position'     => 25,
-                'cpt_options'       => [
-                    'supports' => [
-                        'title'
-                    ]
-                ]
             ]
         );
 
